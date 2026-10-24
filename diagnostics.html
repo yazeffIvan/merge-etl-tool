@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Диагностика данных — Analyzer</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/diagnostics.css">
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
+</head>
+<body data-page="diagnostics">
+<div class="app">
+  <h1>🔍 Диагностика данных</h1>
+  <div class="sub">Профилирование каждого файла: пропуски, дубликаты, аномалии, числовые характеристики.</div>
+
+  <div class="card">
+    <div class="dropzone" id="dropzone">
+      <div class="icon">📂</div>
+      <div><strong>Перетащите файлы сюда</strong> или нажмите для выбора</div>
+      <p>Файлы сохраняются в общем хранилище и доступны на всех страницах</p>
+      <input type="file" id="fileInput" multiple accept=".csv,.xlsx,.xls" hidden>
+    </div>
+    <div class="center-row">
+      <button class="btn" id="pickFilesBtn" type="button">Выбрать файлы</button>
+      <button class="btn" id="reloadBtn" type="button" style="margin-left:8px;">↻ Перечитать из хранилища</button>
+    </div>
+  </div>
+
+  <div class="card" id="filesCard" hidden>
+    <div class="files-header">
+      <h2>📋 Файлы <span id="fileCount" class="step-badge">0</span></h2>
+      <div class="files-header-actions">
+        <button class="btn btn-sm" id="runDiagBtn" type="button">▶ Запустить диагностику</button>
+        <button class="btn btn-sm" id="exportDiagBtn" type="button">⬇ Скачать отчёт (txt)</button>
+        <button class="btn btn-sm" id="clearAllBtn" type="button">Очистить всё</button>
+      </div>
+    </div>
+    <div class="file-list" id="fileList"></div>
+  </div>
+
+  <div id="diagnosticsContainer"></div>
+</div>
+
+<script src="js/storage.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/state.js"></script>
+<script src="js/parser.js"></script>
+<script src="js/diagnostics.js"></script>
+</body>
+</html>

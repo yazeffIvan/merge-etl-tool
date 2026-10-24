@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSV/Excel Merge — локальный инструмент</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
+</head>
+<body data-page="merge">
+<div class="app">
+  <h1>🔗 Соединение CSV / Excel</h1>
+  <div class="sub">Полноценный ETL-отладчик: выбор базовой таблицы, аналитика по NULL, отчёт по источникам.</div>
+  <div class="hotkeys-bar">
+    <button class="hotkeys-trigger" type="button" onclick="showHotkeysHelp()">
+      ⌨️ Горячие клавиши <kbd>?</kbd>
+    </button>
+  </div>
+  <div class="card">
+    <div class="dropzone" id="dropzone">
+      <div class="icon">📂</div>
+      <div><strong>Перетащите файлы сюда</strong> или нажмите для выбора</div>
+      <p>Поддерживаются .csv, .xlsx, .xls</p>
+      <input type="file" id="fileInput" multiple accept=".csv,.xlsx,.xls" hidden>
+    </div>
+    <div class="center-row">
+      <button class="btn" id="pickFilesBtn" type="button">Выбрать файлы</button>
+    </div>
+  </div>
+
+  <div class="card" id="filesCard" hidden>
+    <div class="files-header">
+      <h2>📋 Таблицы <span id="fileCount" class="step-badge">0</span></h2>
+      <div class="files-header-actions">
+        <button class="btn btn-sm" id="selectAllBtn" type="button">Выбрать все</button>
+        <button class="btn btn-sm" id="deselectAllBtn" type="button">Снять все</button>
+        <button class="btn btn-sm" id="clearAllBtn" type="button">Очистить всё</button>
+      </div>
+    </div>
+    <div class="file-list" id="fileList"></div>
+    <div class="actions-bar">
+      <button class="btn btn-primary" id="mergeBtn" type="button">🔗 Соединить выбранные</button>
+      <span id="mergeHint" class="hint">Выберите минимум 2 таблицы</span>
+    </div>
+  </div>
+
+  <div class="card" id="reportCard" hidden>
+    <h2 class="card-title">📊 Отчёт по шагам</h2>
+    <div id="reportList"></div>
+  </div>
+
+  <div class="card" id="warningsCard" hidden>
+    <h2 class="card-title">⚠️ Предупреждения</h2>
+    <div class="warning-list" id="warningList"></div>
+  </div>
+
+  <div class="card" id="sourcesCard" hidden>
+    <h2 class="card-title">🔀 Разбивка по источникам</h2>
+    <div id="sourcesList"></div>
+  </div>
+
+  <div class="card" id="resultCard" hidden>
+    <div class="flex-between">
+      <h2 class="card-title" style="margin:0;">
+        📄 Последний результат <span class="step-badge" id="resultRowsBadge">0 строк</span>
+      </h2>
+      <div class="result-actions">
+        <button class="copy-stats-btn" id="copyStatsBtn" type="button">📋 Скопировать статистику</button>
+        <button class="btn btn-sm" id="downloadCsvBtn" type="button">⬇ Скачать CSV</button>
+        <button class="btn btn-success btn-sm" id="downloadXlsxBtn" type="button">⬇ Скачать Excel</button>
+      </div>
+    </div>
+
+    <div class="save-result-bar" id="saveResultBar" hidden>
+      <span>💡 <strong>Результат добавлен в список таблиц</strong> — можно продолжить работу с ним, не скачивая файл.</span>
+      <button class="btn btn-sm" id="materializeBtn" type="button">📌 Закрепить как файл</button>
+    </div>
+
+    <div id="statsBlock"></div>
+
+    <div class="table-wrap" id="resultTableWrap">
+      <div class="empty-state">Пока нет результата</div>
+    </div>
+
+    <div class="pagination-bar" id="paginationBar" hidden>
+      <span>Строк на странице:
+        <select id="pageSizeSelect">
+          <option value="50">50</option>
+          <option value="100" selected>100</option>
+          <option value="250">250</option>
+          <option value="500">500</option>
+          <option value="all">Все</option>
+        </select>
+      </span>
+      <div class="page-controls">
+        <button id="prevPageBtn" type="button">← Назад</button>
+        <span class="page-info" id="pageInfo">1 / 1</span>
+        <button id="nextPageBtn" type="button">Вперёд →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<script src="js/storage.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/state.js"></script>
+<script src="js/parser.js"></script>
+<script src="js/merge.js"></script>
+<script src="js/stats.js"></script>
+<script src="js/reports.js"></script>
+<script src="js/render.js"></script>
+<script src="js/export.js"></script>
+<script src="js/hotkeys.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
