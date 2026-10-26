@@ -4,7 +4,7 @@ function parseFile(file) {
     reader.onload = (e) => {
       try {
         const data = new Uint8Array(e.target.result);
-        const workbook = XLSX.read(data, { type: 'array', raw: true });
+        const workbook = XLSX.read(data, { type: 'array', raw: true, codepage: 65001 });
         const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
         let rows = XLSX.utils.sheet_to_json(firstSheet, { defval: '', raw: false });
 

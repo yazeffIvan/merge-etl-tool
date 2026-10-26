@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Аналитика (Pivot) — Analyzer</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/pivot.css">
+  <!-- SheetJS для парсинга Excel -->
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
+  <!-- Chart.js для красивых графиков -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body data-page="pivot">
+<div class="app">
+  <h1>📊 Сводные таблицы</h1>
+  <div class="sub">Группировка, агрегация и визуализация данных из ваших файлов.</div>
+
+  <div class="card" id="emptyCard">
+    <div class="empty-state" style="padding:60px 20px;">
+      <div style="font-size:40px;margin-bottom:12px;">📂</div>
+      <div style="font-size:16px;font-weight:600;color:#0b1c33;margin-bottom:6px;">Нет загруженных файлов</div>
+      <div style="font-size:14px;color:#64748b;margin-bottom:20px;">Загрузите файлы на странице Merge или Очистка</div>
+      <a href="index.html" class="btn btn-primary" style="text-decoration:none;">Перейти к Merge</a>
+    </div>
+  </div>
+
+  <div class="card" id="pivotBuilderCard" hidden>
+    <div class="files-header">
+      <h2>Конструктор сводной таблицы</h2>
+    </div>
+    
+    <div class="pivot-controls">
+      <div class="control-group">
+        <label>Выберите таблицу</label>
+        <select id="pivotFileSelect"></select>
+      </div>
+      
+      <div class="control-group">
+        <label>Группировать по (Строки)</label>
+        <select id="pivotGroupBy"></select>
+      </div>
+
+      <div class="control-group">
+        <label>Разбивка по (Столбцы)</label>
+        <select id="pivotGroupBy2">
+          <option value="">— нет (только строки) —</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label>Метрика (Значение)</label>
+        <select id="pivotMetricCol"></select>
+      </div>
+
+      <div class="control-group">
+        <label>Агрегация</label>
+        <select id="pivotAggType">
+          <option value="sum">Сумма</option>
+          <option value="avg">Среднее</option>
+          <option value="count">Количество</option>
+          <option value="min">Минимум</option>
+          <option value="max">Максимум</option>
+        </select>
+      </div>
+
+      <button class="btn btn-primary" id="buildPivotBtn" type="button" style="height: 38px; margin-top: 20px;">Рассчитать</button>
+    </div>
+  </div>
+
+  <div class="card" id="pivotResultCard" hidden>
+    <div class="flex-between">
+      <h2>Результат</h2>
+      <div style="display: flex; gap: 10px;">
+        <button class="btn btn-sm" id="downloadPivotCsvBtn" type="button">⬇ Скачать CSV</button>
+        <button class="btn btn-success btn-sm" id="downloadPivotXlsxBtn" type="button">⬇ Скачать Excel</button>
+      </div>
+    </div>
+    
+    <div id="pivotResultInfo" class="mini-stats" style="margin-bottom: 12px;"></div>
+    
+    <!-- Таблица -->
+    <div class="table-wrap" id="pivotTableWrap"></div>
+
+    <!-- График Chart.js -->
+    <div style="margin-top: 30px; position: relative; height: 350px; width: 100%;">
+      <canvas id="pivotChartCanvas"></canvas>
+    </div>
+  </div>
+
+</div>
+
+<script src="js/utils.js"></script>
+<script src="js/state.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/pivot.js"></script>
+</body>
+</html>

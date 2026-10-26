@@ -1,0 +1,25 @@
+.pivot-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: flex-end;
+  margin-bottom: 20px;
+}
+.pivot-controls .control-group {
+  flex: 1;
+  min-width: 180px;
+}
+.pivot-controls select {
+  width: 100%;
+}
+.mini-stats {
+  display: flex;
+  gap: 22px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: #475569;
+}
+.mini-stats b {
+  color: #0b1c33;
+  font-weight: 600;
+}

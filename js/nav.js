@@ -1,11 +1,11 @@
-// Общее верхнее меню для всех страниц
-
 function renderNav() {
   const currentPage = document.body.getAttribute('data-page') || 'merge';
 
-  const items = [
+    const items = [
     { id: 'merge', href: 'index.html', label: '🔗 Merge' },
     { id: 'diagnostics', href: 'diagnostics.html', label: '🔍 Диагностика' },
+    { id: 'cleanup', href: 'cleanup.html', label: '🧹 Очистка' },
+    { id: 'pivot', href: 'pivot.html', label: '📊 Аналитика' },
   ];
 
   const nav = document.createElement('nav');

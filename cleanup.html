@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Очистка данных — Analyzer</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/cleanup.css">
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
+</head>
+<body data-page="cleanup">
+<div class="app">
+  <h1>🧹 Очистка данных</h1>
+  <div class="sub">Приведение колонок к нужным именам и типам, работа с NULL, дедупликация, фильтры.</div>
+
+  <div class="card" id="emptyCard">
+    <div class="empty-state" style="padding:60px 20px;">
+      <div style="font-size:40px;margin-bottom:12px;">📂</div>
+      <div style="font-size:16px;font-weight:600;color:#0b1c33;margin-bottom:6px;">Нет загруженных файлов</div>
+      <div style="font-size:14px;color:#64748b;margin-bottom:20px;">Загрузите файлы на странице Merge или Диагностика</div>
+      <a href="index.html" class="btn btn-primary" style="text-decoration:none;">Перейти к Merge</a>
+    </div>
+  </div>
+
+  <div id="filesContainer"></div>
+</div>
+
+<script src="js/utils.js"></script>
+<script src="js/state.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/diagnostics.js"></script>
+<script src="js/cleanup.js"></script>
+</body>
+</html>
+
